@@ -2,6 +2,7 @@
 import { baseInputStyleClasses } from '~/utils/vars/styles';
 import FilesAPI, { type IDirectoryEntry, type IFileEntry, type ITree } from '~/utils/api/files';
 import File from './file.vue';
+import useMediaViewer from '~/utils/store/mediaViewer';
 
 const path = ref('/public');
 const runtime = useRuntimeConfig()
@@ -98,15 +99,15 @@ const handlePath = (newPath: string) => {
     return newPath;
 };
 
-// const mediaViewer = useMediaViewer();
+const mediaViewer = useMediaViewer();
 
-const openFile = (file: { type: string; name: string }) => {
-    if (file.type === 'directory') return; // Ignore directories
-    const filePath = `${path.value}/${file.name}`;
-    // mediaViewer.openViewer([{
-    //     id: filePath,
-    //     src: `/api/backend/admin/files/view?path=${handlePath(filePath)}`,
-    // }], 0);
+const openFile = (file: { category: string; href: string }) => {
+    if (file.category === 'directory') return; // Ignore directories
+    const filePath = `${path.value}/${file.href}`;
+    mediaViewer.openViewer([{
+        id: filePath,
+        src: `${api.getBaseUrl()}${handlePath(filePath)}`,
+    }], 0);
 };
 
 const refresh = async () => {
@@ -121,7 +122,7 @@ const refresh = async () => {
 </script>
 
 <template>
-    <div class="p-4 flex flex-col overflow-auto max-h-full">
+    <div class="p-4">
         <div class="mb-4 flex justify-between items-center gap-2">
             <div class="flex items-center gap-2">
                 <button class="btn btn-icon" @click="home">
@@ -166,9 +167,8 @@ const refresh = async () => {
                         :name="file.href"
                         :size="file.sz"
                         :modified="new Date(file.ts).toLocaleString()"
-                        @click="file.category === 'directory' ? navigateToPath(handlePath(`${path}/${file.href}`)) : () => {}"
+                        @click="file.category === 'directory' ? navigateToPath(handlePath(`${path}/${file.href}`)) : openFile(file)"
                     />
-                    <!-- @click="file.type === 'directory' ? navigateToPath(handlePath(`${path}/${file.name}`)) : openFile(file)" -->
                 </template>
             </div>
         </div>

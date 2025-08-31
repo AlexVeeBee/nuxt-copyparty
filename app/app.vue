@@ -1,4 +1,5 @@
 <template>
+  <OverlaysMediaViewer />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>

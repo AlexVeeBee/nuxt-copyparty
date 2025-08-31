@@ -3,10 +3,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: [
-    '@nuxt/fonts', 
+    '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    '@pinia/nuxt',
+    '@vueuse/nuxt',
   ],
   css: [
     '~/assets/styles/main.css',

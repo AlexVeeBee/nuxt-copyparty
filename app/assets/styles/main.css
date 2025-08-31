@@ -200,3 +200,21 @@ table tbody tr:first-child div
 {
   border-top: none;
 }
+
+.scale-fade-enter-active, .scale-fade-leave-active {
+  transition: all 0.2s ease-out;
+}
+.scale-fade-enter-from, .scale-fade-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.scale-fade-enter-to, .scale-fade-leave-from {
+  opacity: 1;
+  transform: scale(1);
+}
+.scale-fade-enter-active {
+  transition: all 0.2s ease-out;
+}
+.scale-fade-leave-active {
+  transition: all 0.2s ease-in;
+}
