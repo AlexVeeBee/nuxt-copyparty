@@ -2,6 +2,8 @@
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+For the copyparty api [Read Here](https://github.com/9001/copyparty/blob/hovudstraum/docs/devnotes.md#http-api)
+
 ## Setup
 
 Make sure to install dependencies:
